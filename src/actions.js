@@ -3,6 +3,12 @@ export const ADD_TODO = 'ADD_TODO';
 export const COMPLETE_TODO = 'COMPLETE_TODO';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
+export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
+export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
+export const REQUEST_POSTS = 'REQUEST_POSTS' ;
+
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+
 // 过滤类型常量
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL', // 全显示
@@ -33,4 +39,38 @@ export const setVisibilityFilter = filter => {
     type: SET_VISIBILITY_FILTER,
     filter
   }
+}
+
+//同步
+//用户可以选择要显示的 subreddit
+export function selectSubreddit(subreddit) {
+    return {
+        type: SELECT_SUBREDDIT,
+        subreddit
+    }
+}
+
+
+//刷新按钮 更新
+export function invalidatesubreddit(subreddit) {
+    return {
+        type: INVALIDATE_SUBREDDIT,
+        subreddit
+    }
+}
+//发帖
+export function requestPosts(subreddit) {
+    return {
+        type: REQUEST_POSTS,
+        subreddit
+    }
+}
+
+export function receivePosts(subreddit, json) {
+    return {
+        type: RECEIVE_POSTS,
+        subreddit,
+        posts: json.data.children.map(child => child.data),
+        receivedAt: Date.now()
+    }
 }

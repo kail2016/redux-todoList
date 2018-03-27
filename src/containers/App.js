@@ -7,6 +7,8 @@ import Footer from '../components/Footer';
 import '../style/App.css';
 
 class App extends React.Component {
+
+  //4，写一个render渲染函数，如果有状态更动时，作重新呈现
   render() {
     // App 接收 state 映射后的对象obj中的属性和 dispatch 传递给子组件
     const { dispatch, visibleTodos, visibilityFilter } = this.props;
